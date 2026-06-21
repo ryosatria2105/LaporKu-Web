@@ -28,11 +28,8 @@ JWT_ACCESS_EXPIRES: '7d',  JWT_REFRESH_EXPIRES_DAYS: 7,
 
   CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
   COOKIE_SECURE: process.env.NODE_ENV === 'production',
+  FORCE_HTTPS_REDIRECT: process.env.FORCE_HTTPS_REDIRECT, // opt-in, default off (lihat app.js)
 
   REDIS_HOST: process.env.REDIS_HOST || '127.0.0.1',
   REDIS_PORT: parseInt(process.env.REDIS_PORT || '6379', 10),
-  REDIS_URL: process.env.REDIS_URL,
-
-  // Mode demo portfolio: register publik dimatikan, tapi tidak mengubah behavior lokal
-  DISABLE_REGISTER: process.env.DISABLE_REGISTER === 'true',
 };

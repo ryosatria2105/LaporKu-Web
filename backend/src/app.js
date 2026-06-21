@@ -12,9 +12,12 @@ import routes from './routes/index.js';
 export function createApp() {
   const app = express();
 
-  if (env.NODE_ENV === 'production') {
+  // Force HTTPS redirect hanya jika eksplisit diaktifkan via env var.
+  // Beberapa platform hosting (mis. Back4app) tidak selalu mengirim header
+  // x-forwarded-proto sesuai ekspektasi, sehingga default-deny menyebabkan redirect loop.
+  if (env.NODE_ENV === 'production' && env.FORCE_HTTPS_REDIRECT === 'true') {
     app.use((req, res, next) => {
-      if (req.headers['x-forwarded-proto'] !== 'https') {
+      if (req.headers['x-forwarded-proto'] === 'http') {
         return res.redirect(301, `https://${req.headers.host}${req.url}`);
       }
       next();
