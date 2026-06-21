@@ -53,6 +53,30 @@ export default function LoginPage() {
 
             {error && <div className="auth-error">{error}</div>}
 
+            {/* Mode demo portfolio: panel info kredensial demo.
+                Hanya tampil kalau VITE_DEMO_MODE='true'. Tidak mempengaruhi tampilan lokal sama sekali. */}
+            {import.meta.env.VITE_DEMO_MODE === 'true' && (
+              <div style={{
+                background: '#EFF6FF',
+                border: '1px solid #BFDBFE',
+                borderRadius: '10px',
+                padding: '12px 14px',
+                marginBottom: '16px',
+                fontSize: '13px',
+                lineHeight: '1.6',
+              }}>
+                <p style={{ fontWeight: 600, color: '#1E3A8A', marginBottom: '6px' }}>
+                  Gunakan akun demo berikut untuk mencoba aplikasi:
+                </p>
+                <p style={{ color: '#1E40AF', margin: 0 }}>
+                  <strong>Admin</strong> &mdash; username: <code>admin_demo</code> / password: <code>demo12345</code>
+                </p>
+                <p style={{ color: '#1E40AF', margin: 0 }}>
+                  <strong>Masyarakat</strong> &mdash; username: <code>warga_demo</code> / password: <code>demo12345</code>
+                </p>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div className="auth-group">
                 <label className="auth-label">Username atau Email</label>
@@ -99,9 +123,42 @@ export default function LoginPage() {
                 {loading ? 'Memproses...' : (<>Masuk <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg></>)}
               </button>
 
+              {/* Mode demo portfolio: dua tombol quick-fill, hanya tampil kalau VITE_DEMO_MODE='true'.
+                  Tidak mempengaruhi tampilan lokal sama sekali kalau env var tidak di-set. */}
+              {import.meta.env.VITE_DEMO_MODE === 'true' && (
+                <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setForm({ login: 'admin_demo', password: 'demo12345' });
+                    }}
+                    className="auth-btn"
+                    style={{ flex: 1, background: '#F1F5F9', color: '#1E293B', border: '1px solid #E2E8F0' }}
+                  >
+                    Coba sebagai Admin
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setForm({ login: 'warga_demo', password: 'demo12345' });
+                    }}
+                    className="auth-btn"
+                    style={{ flex: 1, background: '#F1F5F9', color: '#1E293B', border: '1px solid #E2E8F0' }}
+                  >
+                    Coba sebagai Masyarakat
+                  </button>
+                </div>
+              )}
+
               <p className="auth-footer-text">
-                Belum punya akun?{' '}
-                <Link to="/register" className="auth-link auth-link-orange">Daftar sekarang</Link>
+                {import.meta.env.VITE_DEMO_MODE === 'true' ? (
+                  'Registrasi dinonaktifkan pada mode demo.'
+                ) : (
+                  <>
+                    Belum punya akun?{' '}
+                    <Link to="/register" className="auth-link auth-link-orange">Daftar sekarang</Link>
+                  </>
+                )}
               </p>
             </form>
           </div>

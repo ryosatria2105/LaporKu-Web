@@ -10,8 +10,8 @@
 const BASE = (import.meta.env.VITE_API_URL || '').replace('/api/v1', '');
 
 export function uploadUrl(filename) {
-    if (!filename) return '';
-    if (filename.startsWith('http')) return filename; // sudah URL lengkap, jangan diubah
-    const path = filename.startsWith('/uploads/') ? filename : `/uploads/${filename}`;
-    return `${BASE}${path}`;
+  if (!filename) return '';
+  if (filename.startsWith('http')) return filename; // sudah URL lengkap, jangan diubah
+  const path = filename.startsWith('/uploads/') ? filename : `/uploads/${filename}`;
+  return `${BASE}${path}`;
 }

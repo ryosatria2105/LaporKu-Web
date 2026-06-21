@@ -1,5 +1,6 @@
 import * as authService from '../services/auth.service.js';
 import { redis } from '../config/redis.js';
+import { env } from '../config/env.js';
 
 const COOKIE_OPTS = {
   httpOnly: true,
@@ -15,6 +16,15 @@ function handleServiceError(err, res) {
 
 export async function register(req, res) {
   try {
+    // Mode demo portfolio: register publik dimatikan via env var.
+    // Default 'false' (DISABLE_REGISTER tidak di-set) â behavior lokal sama persis seperti sekarang.
+    if (env.DISABLE_REGISTER) {
+      return res.status(403).json({
+        success: false,
+        message: 'Registrasi dinonaktifkan pada mode demo. Gunakan akun demo yang tersedia di halaman login.',
+      });
+    }
+
     const { nama, username, email, phone, password } = req.body;
     if (!nama || !username || !email || !password)
       return res.status(400).json({ success: false, message: 'Semua field wajib diisi' });
