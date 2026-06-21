@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --navy:      #1a56db;
+    --navy-dark: #1342b0;
+    --navy-med:  #2563eb;
+    --navy-lt:   #eff6ff;
+    --gold:      #d97706;
+    --gold-lt:   #fffbeb;
+    --bg:        #f1f5f9;
+    --surface:   #ffffff;
+    --border:    #e2e8f0;
+    --text:      #1e293b;
+    --text-2:    #475569;
+    --muted:     #94a3b8;
+  }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes popIn {
+  from { transform: scale(.9); opacity: 0; }
+  to   { transform: scale(1);  opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in { animation: slideIn .28s cubic-bezier(.4,0,.2,1); }
+.animate-fade-in  { animation: fadeIn  .2s ease; }
+.animate-pop-in   { animation: popIn   .2s ease; }
+
+*, *::before, *::after {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}

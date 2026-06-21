@@ -1,0 +1,56 @@
+# ============================================================
+# BACKEND — laporku-web/backend
+# ============================================================
+
+# Dependencies
+node_modules/
+
+# Environment — SENSITIF (berisi DB password, JWT secret, Gmail password)
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+.env.test
+
+# Upload files — data user (foto profil, foto laporan)
+uploads/
+
+# Build
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/*.db
+prisma/*.db-journal
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary
+*.tmp
+*.temp
+.cache/
+
+# Docker
+docker-compose.yml
+docker-compose.*.yml

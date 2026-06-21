@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int             @id @default(autoincrement())
+  nama           String          @db.VarChar(100)
+  username       String          @unique @db.VarChar(50)
+  email          String          @unique @db.VarChar(100)
+  phone          String?         @db.VarChar(20)
+  passwordHash   String          @map("password_hash") @db.VarChar(255)
+  role           String          @db.VarChar(20)
+  fotoProfil     String?         @map("foto_profil") @db.VarChar(255)
+  emailVerified  Boolean?        @default(false) @map("email_verified")
+  isActive       Boolean?        @default(true) @map("is_active")
+  createdAt      DateTime?       @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt      DateTime?       @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  laporan        Laporan[]
+  notifikasi     Notifikasi[]
+  passwordResets PasswordReset[]
+  refreshTokens  RefreshToken[]
+
+  @@map("users")
+}
+
+model PasswordReset {
+  id        Int       @id @default(autoincrement())
+  userId    Int       @map("user_id")
+  tokenHash String    @unique @map("token_hash") @db.VarChar(255)
+  expiresAt DateTime  @map("expires_at") @db.Timestamp(6)
+  used      Boolean?  @default(false)
+  ipAddress String?   @map("ip_address") @db.VarChar(45)
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("password_resets")
+}
+
+model RefreshToken {
+  id         Int       @id @default(autoincrement())
+  userId     Int       @map("user_id")
+  tokenHash  String    @unique @map("token_hash") @db.VarChar(255)
+  deviceInfo String?   @map("device_info") @db.VarChar(255)
+  ipAddress  String?   @map("ip_address") @db.VarChar(45)
+  expiresAt  DateTime  @map("expires_at") @db.Timestamp(6)
+  revokedAt  DateTime? @map("revoked_at") @db.Timestamp(6)
+  lastUsedAt DateTime? @map("last_used_at") @db.Timestamp(6)
+  createdAt  DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("refresh_tokens")
+}
+
+model VisitorLog {
+  id           Int       @id @default(autoincrement())
+  sessionId    String    @map("session_id") @db.VarChar(64)
+  userAgent    String?   @map("user_agent")
+  ipAddress    String?   @map("ip_address") @db.VarChar(45)
+  referrer     String?
+  pageVisited  String    @map("page_visited") @db.VarChar(255)
+  durationSec  Int?      @map("duration_sec")
+  consentGiven Boolean   @default(false) @map("consent_given")
+  deviceType   String?   @map("device_type") @db.VarChar(20)
+  countryCode  String?   @map("country_code") @db.VarChar(2)
+  createdAt    DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+
+  // ── Field baru ─────────────────────────────────────────────
+  city         String?   @db.VarChar(100)
+  browserName  String?   @map("browser_name") @db.VarChar(50)
+  osName       String?   @map("os_name") @db.VarChar(50)
+  ispName      String?   @map("isp_name") @db.VarChar(100)
+  language     String?   @db.VarChar(20)
+  visitorKey   String?   @map("visitor_key") @db.VarChar(64)
+  lastSeenAt   DateTime? @map("last_seen_at") @db.Timestamp(6)
+
+  @@index([sessionId], map: "idx_session")
+  @@index([createdAt], map: "idx_created_at")
+  @@index([visitorKey], map: "idx_visitor_key")
+  @@map("visitor_logs")
+}
+
+model Kategori {
+  id        Int       @id @default(autoincrement())
+  nama      String    @db.VarChar(100)
+  deskripsi String?   @db.VarChar(255)
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  @@map("kategori")
+}
+
+model Laporan {
+  id           String    @id
+  judul        String
+  kategori     String
+  keterangan   String
+  nama         String
+  nohp         String?
+  lokasi       String?
+  gambar       String?
+  tanggal      DateTime  @default(now()) @db.Timestamp(6)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  userId       Int       @map("user_id")
+  status       String    @default("menunggu") @db.VarChar(20)
+  catatanAdmin String?   @map("catatan_admin")
+  deletedAt    DateTime? @map("deleted_at") @db.Timestamp(6)
+  user         User      @relation(fields: [userId], references: [id])
+
+  @@map("laporan")
+}
+
+model Notifikasi {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  judul     String   @db.VarChar(200)
+  pesan     String
+  tipe      String   @default("info") @db.VarChar(30)
+  dibaca    Boolean  @default(false)
+  laporanId String?  @map("laporan_id") @db.VarChar(100)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("notifikasi")
+}
