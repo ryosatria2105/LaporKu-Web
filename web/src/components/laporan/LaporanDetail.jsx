@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from 'react'
 import { parseTS, ago } from '../../utils/laporanHelpers';
 import { fmtDateLong } from '../../utils/dateFormat';
+import { uploadUrl } from '../../utils/uploadUrl';
 
 // fmtDate → fmtDateLong dari utils/dateFormat (no duplicate)
 const fmtDate = (ts) => {
@@ -36,9 +37,9 @@ const LOCKED_STATUSES = ['Diproses', 'Selesai', 'Ditolak']
 // ── Helper: ambil list URL foto ──────────────────────────────
 function getFotoList(r) {
   if (Array.isArray(r.fotos) && r.fotos.length > 0) {
-    return r.fotos.map(f => (typeof f === 'string' ? f : f.url || f.path || '')).filter(Boolean).map(u => u.startsWith('http') ? u : `/uploads/${u}`)
+    return r.fotos.map(f => (typeof f === 'string' ? f : f.url || f.path || '')).filter(Boolean).map(u => u.startsWith('http') ? u : uploadUrl(u))
   }
-  if (r.gambar) return [`/uploads/${r.gambar}`]
+  if (r.gambar) return [uploadUrl(r.gambar)]
   return []
 }
 

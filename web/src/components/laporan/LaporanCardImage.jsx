@@ -2,6 +2,7 @@ import React from "react";
 // components/LaporanCardImage.jsx — Kartu laporan dengan foto besar (Factory Product)
 // Dipakai oleh LaporanFactory ketika laporan punya gambar
 import { parseGambarFirst, parseTS, ago } from '../../utils/laporanHelpers';
+import { uploadUrl } from '../../utils/uploadUrl';
 
 const BADGE = {
   Kecelakaan:    { bg: '#fef2f2', color: '#dc2626', border: 'rgba(220,38,38,.2)' },
@@ -28,7 +29,7 @@ export default function LaporanCardImage({ data: r, onClick, onDelete, currentUs
       {/* Foto besar di atas */}
       <div className="relative h-36 overflow-hidden bg-slate-100">
         <img
-          src={`/uploads/${parseGambarFirst(r.gambar)}`}
+          src={uploadUrl(parseGambarFirst(r.gambar))}
           alt={r.judul}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           onError={e => { e.target.parentElement.style.background = 'var(--navy-lt)' }}

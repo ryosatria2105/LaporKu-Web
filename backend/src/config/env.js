@@ -31,4 +31,5 @@ JWT_ACCESS_EXPIRES: '7d',  JWT_REFRESH_EXPIRES_DAYS: 7,
 
   REDIS_HOST: process.env.REDIS_HOST || '127.0.0.1',
   REDIS_PORT: parseInt(process.env.REDIS_PORT || '6379', 10),
+  REDIS_URL: process.env.REDIS_URL, // Railway/Render â kalau ada, didahulukan dari host+port
 };

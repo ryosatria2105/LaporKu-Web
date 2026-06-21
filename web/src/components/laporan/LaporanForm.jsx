@@ -5,6 +5,7 @@ import React from "react";
 // Font: Plus Jakarta Sans
 import { useState, useRef, useCallback } from 'react'
 import { laporanService } from '../../services/api.service';
+import { uploadUrl } from '../../utils/uploadUrl';
 
 const FF = "'Plus Jakarta Sans', sans-serif";
 
@@ -42,8 +43,8 @@ export default function LaporanForm({ initial, onClose, onSaved, onError, katego
       return initial.fotos
         .map(f => typeof f === 'string' ? f : f.url || '')
         .filter(Boolean)
-        .map(u => u.startsWith('http') ? u : `/uploads/${u}`);
-    if (initial.gambar) return [`/uploads/${initial.gambar}`];
+        .map(u => u.startsWith('http') ? u : uploadUrl(u));
+    if (initial.gambar) return [uploadUrl(initial.gambar)];
     return [];
   });
   const [newFiles, setNewFiles]       = useState([]);
@@ -104,7 +105,7 @@ export default function LaporanForm({ initial, onClose, onSaved, onError, katego
       fd.append('nama',       form.nama.trim());
       fd.append('nohp',       form.nohp?.trim() || '');
       fd.append('lokasi',     form.lokasi?.trim() || '');
-      existingFotos.forEach(url => fd.append('existingFotos[]', url.replace('/uploads/', '')));
+      existingFotos.forEach(url => fd.append('existingFotos[]', url.replace(/^https?:\/\/[^/]+/, '').replace('/uploads/', '')));
       newFiles.forEach(file => fd.append('gambar', file));
       if (initial?.id) await laporanService.update(initial.id, fd);
       else             await laporanService.create(fd);

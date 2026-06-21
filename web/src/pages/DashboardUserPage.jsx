@@ -16,6 +16,7 @@ import LaporanDetail from "../components/laporan/LaporanDetail";
 import LaporanForm from "../components/laporan/LaporanForm";
 import ConfirmDeleteModal from "../components/laporan/ConfirmDeleteModal";
 import logoDark from "../assets/logo-darkmode.png";
+import { uploadUrl } from "../utils/uploadUrl";
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
 } from "recharts";
@@ -3912,7 +3913,7 @@ function DetailWithLightbox({
           )}
           <img
             onClick={(e) => e.stopPropagation()}
-            src={`/uploads/${gambarList[lightboxIdx]}`}
+            src={uploadUrl(gambarList[lightboxIdx])}
             alt="preview"
             style={{ width: "100vw", height: "100vh", objectFit: "contain" }}
           />
@@ -3975,7 +3976,7 @@ function DetailWithLightbox({
               }}
             >
               <img
-                src={`/uploads/${gambarList[0]}`}
+                src={uploadUrl(gambarList[0])}
                 alt="foto utama"
                 style={{
                   width: "100%",
@@ -4050,7 +4051,7 @@ function DetailWithLightbox({
                     }}
                   >
                     <img
-                      src={`/uploads/${g}`}
+                      src={uploadUrl(g)}
                       alt={`thumb-${i + 1}`}
                       style={{
                         width: "100%",
