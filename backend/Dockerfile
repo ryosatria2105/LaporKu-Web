@@ -4,6 +4,10 @@
 
 FROM node:20-alpine
 
+# Fix: Prisma engine butuh OpenSSL, Alpine (musl libc) tidak menyediakannya secara default.
+# Tanpa ini Prisma Client gagal load shared library saat runtime.
+RUN apk add --no-cache openssl libssl3
+
 WORKDIR /app
 
 # Copy package files dulu (caching layer Docker, build jadi lebih cepat di redeploy berikutnya)
