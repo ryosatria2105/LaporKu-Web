@@ -1,3 +1,4 @@
+import React from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
 import LandingPage from './pages/LandingPage'
@@ -10,6 +11,27 @@ import PasswordRecoveryPage from './pages/PasswordRecoveryPage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 import ProfilPage from './pages/ProfilPage'
 import KategoriPage from './pages/KategoriPage'
+
+function MobileGuard({ children }) {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 1024);
+  React.useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  if (isMobile) return (
+    <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'32px 24px', background:'#F8FAFC', textAlign:'center' }}>
+      <svg width="52" height="52" fill="none" viewBox="0 0 24 24" stroke="#3B82F6" strokeWidth={1.5} style={{ marginBottom:'20px' }}>
+        <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+      </svg>
+      <h2 style={{ fontSize:'20px', fontWeight:700, color:'#0F172A', margin:'0 0 10px' }}>Tampilan Tidak Optimal</h2>
+      <p style={{ fontSize:'14px', color:'#64748B', margin:'0 0 8px', lineHeight:1.6, maxWidth:'300px' }}>Dashboard LaporKu dirancang untuk layar laptop atau PC (min. 1024px).</p>
+      <p style={{ fontSize:'14px', color:'#64748B', margin:'0 0 24px', lineHeight:1.6, maxWidth:'300px' }}>Silakan buka di perangkat yang lebih besar untuk pengalaman terbaik.</p>
+      <button onClick={() => window.location.href = '/login'} style={{ background:'#3B82F6', color:'#fff', border:'none', borderRadius:'8px', padding:'10px 28px', fontSize:'14px', fontWeight:600, cursor:'pointer' }}>Kembali ke Login</button>
+    </div>
+  );
+  return children;
+}
 
 function GuestRoute({ children }) {
   const { user, loading } = useAuth();
@@ -50,7 +72,7 @@ export default function App() {
       <Route path="/reset-password" element={<ResetPasswordPage />} />
 
       <Route path="/dashboard/admin" element={
-        <PrivateRoute role="admin"><DashboardAdminPage /></PrivateRoute>
+        <PrivateRoute role="admin"><MobileGuard><DashboardAdminPage /></MobileGuard></PrivateRoute>
       } />
       <Route path="/profil" element={
         <PrivateRoute><ProfilPage /></PrivateRoute>
@@ -59,7 +81,7 @@ export default function App() {
         <PrivateRoute role="admin"><KategoriPage /></PrivateRoute>
       } />
       <Route path="/dashboard/user" element={
-        <PrivateRoute role="masyarakat"><DashboardUserPage/></PrivateRoute>
+        <PrivateRoute role="masyarakat"><MobileGuard><DashboardUserPage/></MobileGuard></PrivateRoute>
       } />
       <Route path="/dashboard" element={
         user
