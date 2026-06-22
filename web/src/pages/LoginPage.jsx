@@ -26,8 +26,9 @@ export default function LoginPage() {
         </svg>
       </button>
 
+      <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'100%' }}>
       {import.meta.env.VITE_DEMO_MODE === 'true' && (
-        <div style={{ width:'100%', maxWidth:'860px', margin:'0 auto 12px', textAlign:'center' }}>
+        <div style={{ width:'100%', maxWidth:'860px', marginBottom:'12px', textAlign:'center' }}>
           <button
             type="button"
             onClick={() => setShowDemo(v => !v)}
