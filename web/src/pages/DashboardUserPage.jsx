@@ -1154,6 +1154,11 @@ function ProfilContent({ user, setUser, refreshUser, onBack, showAlert, darkMode
   };
 
   const handleUploadFoto = (e) => {
+    if (import.meta.env.VITE_DEMO_MODE === 'true') {
+      showAlert({ type: 'info', title: isEn ? 'Feature Unavailable' : 'Fitur Tidak Tersedia', message: isEn ? 'Photo upload is disabled in demo mode. No persistent storage is available in this environment.' : 'Upload foto dinonaktifkan pada mode demo. Tidak ada persistent storage pada environment ini.', confirmLabel: 'OK' });
+      if (e.target) e.target.value = '';
+      return;
+    }
     const file = e.target.files[0];
     if (!file) return;
     // Reset input agar onChange bisa trigger lagi setelah batal
@@ -2559,6 +2564,11 @@ function BuatContent({ user, kategoriList, showAlert, onSaved, onBack, darkMode,
   };
 
   const handleFileChange = (e) => {
+    if (import.meta.env.VITE_DEMO_MODE === 'true') {
+      showAlert({ type: 'info', title: isEn ? 'Feature Unavailable' : 'Fitur Tidak Tersedia', message: isEn ? 'Photo upload is disabled in demo mode. No persistent storage is available in this environment.' : 'Upload foto dinonaktifkan pada mode demo. Tidak ada persistent storage pada environment ini.', confirmLabel: 'OK' });
+      if (e.target) e.target.value = '';
+      return;
+    }
     const files = Array.from(e.target.files);
     const remaining = 5 - photos.length;
     if (remaining <= 0) {
