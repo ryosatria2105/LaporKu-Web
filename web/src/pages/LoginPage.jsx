@@ -74,6 +74,11 @@ export default function LoginPage() {
                 <p style={{ color: '#1E40AF', margin: 0 }}>
                   <strong>Masyarakat</strong> &mdash; username: <code>warga_demo</code> / password: <code>demo12345</code>
                 </p>
+                <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid #BFDBFE', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <p style={{ color: '#6B7280', margin: 0, fontSize: '12px' }}><strong>Cold start:</strong> Load pertama ~5-10 detik, harap tunggu.</p>
+                  <p style={{ color: '#6B7280', margin: 0, fontSize: '12px' }}><strong>Tampilan optimal</strong> di laptop/PC (layar min. 1024px).</p>
+                  <p style={{ color: '#6B7280', margin: 0, fontSize: '12px' }}><strong>Upload foto</strong> tidak tersedia pada mode demo.</p>
+                </div>
               </div>
             )}
 

@@ -311,7 +311,7 @@ export default function LandingPage() {
               <button key={href} onClick={() => scrollTo(href)} className="mob-lnk" style={{background:'none',border:'none',cursor:'pointer',textAlign:'left'}}>{label}</button>
             ))}
             <div className="mob-btns">
-              <button onClick={() => confirmNavigate('/register', 'Daftar Akun', 'Anda akan diarahkan ke halaman pendaftaran akun baru.')} className="btn-daftar full">Daftar</button>
+              <button onClick={() => confirmNavigate('/login', 'Masuk ke Akun', 'Silakan login menggunakan akun demo yang tersedia.')} className="btn-daftar full">Daftar</button>
               <button onClick={() => confirmNavigate('/login', 'Masuk ke Akun', 'Anda akan diarahkan ke halaman login.')} className="btn-login full">Login</button>
             </div>
           </div>
@@ -325,7 +325,7 @@ export default function LandingPage() {
             <h1><span ref={twRef} className="tw-word"></span><span className="tw-cur">|</span><br /><em>Kami Tindaklanjuti</em></h1>
             <p>LaporKu adalah platform digital untuk melaporkan permasalahan fasilitas umum di sekitar Anda secara mudah, cepat, dan transparan.</p>
             <div className="hero-cta">
-              <button onClick={() => confirmNavigate('/register', 'Buat Laporan', 'Anda perlu mendaftar terlebih dahulu untuk mulai membuat laporan.')} className="btn-primary">
+              <button onClick={() => confirmNavigate('/login', 'Buat Laporan', 'Silakan login menggunakan akun demo yang tersedia.')} className="btn-primary">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
                 Buat Laporan Sekarang
               </button>
@@ -507,7 +507,7 @@ export default function LandingPage() {
             <h2>Bergabung & Mulai<br /><span>Laporkan Sekarang</span></h2>
             <p>Daftar gratis dan jadilah bagian dari gerakan masyarakat yang peduli terhadap fasilitas umum di sekitarnya.</p>
             <div className="cta-btns">
-              <button onClick={() => confirmNavigate('/register', 'Daftar Akun', 'Anda akan diarahkan ke halaman pendaftaran akun baru.')} className="btn-white lg">
+              <button onClick={() => confirmNavigate('/login', 'Masuk ke Akun', 'Silakan login menggunakan akun demo yang tersedia.')} className="btn-white lg">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 Daftar Sekarang
               </button>
@@ -536,7 +536,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="fcol"><h5>Navigasi</h5><ul><li><button onClick={() => scrollTo('#home')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Beranda</button></li><li><button onClick={() => scrollTo('#about')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>About Us</button></li><li><button onClick={() => scrollTo('#fitur')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Fitur</button></li><li><button onClick={() => scrollTo('#cara-kerja')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Cara Kerja</button></li><li><button onClick={() => scrollTo('#faq')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>FAQ</button></li></ul></div>
-            <div className="fcol"><h5>Layanan</h5><ul><li><button onClick={() => confirmNavigate('/register', 'Buat Laporan', 'Anda perlu mendaftar terlebih dahulu untuk mulai membuat laporan.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Buat Laporan</button></li><li><button onClick={() => confirmNavigate('/login', 'Cek Status', 'Login terlebih dahulu untuk mengecek status laporan Anda.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Cek Status</button></li><li><button onClick={() => confirmNavigate('/login', 'Riwayat Laporan', 'Login terlebih dahulu untuk melihat riwayat laporan Anda.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Riwayat Laporan</button></li><li><button onClick={() => confirmNavigate('/login', 'Dashboard', 'Login terlebih dahulu untuk mengakses dashboard.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Dashboard</button></li></ul></div>
+            <div className="fcol"><h5>Layanan</h5><ul><li><button onClick={() => confirmNavigate('/login', 'Buat Laporan', 'Silakan login menggunakan akun demo yang tersedia.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Buat Laporan</button></li><li><button onClick={() => confirmNavigate('/login', 'Cek Status', 'Login terlebih dahulu untuk mengecek status laporan Anda.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Cek Status</button></li><li><button onClick={() => confirmNavigate('/login', 'Riwayat Laporan', 'Login terlebih dahulu untuk melihat riwayat laporan Anda.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Riwayat Laporan</button></li><li><button onClick={() => confirmNavigate('/login', 'Dashboard', 'Login terlebih dahulu untuk mengakses dashboard.')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Dashboard</button></li></ul></div>
             <div className="fcol"><h5>Kontak</h5><ul><li><a href="https://wa.me/6287870165060" target="_blank" rel="noopener noreferrer">+62 878-7016-5060</a></li><li><a href="mailto:ryosatria2105@gmail.com">ryosatria2105@gmail.com</a></li><li><a href="https://www.instagram.com/laporku_com/" target="_blank" rel="noopener noreferrer">@laporku_com</a></li><li><button onClick={() => scrollTo('#faq')} style={{background:'none',border:'none',cursor:'pointer',color:'#475569',fontSize:'.875rem'}}>Pusat Bantuan</button></li></ul></div>
           </div>
           <div className="footer-bot">
