@@ -7109,11 +7109,7 @@ export default function DashboardUserPage() {
                 <SLabel>{bahasaU==="en"?"Account Management":"Manajemen Akun"}</SLabel>
                 <SCard>
                   <SRow icon={<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#DC2626" strokeWidth={2}><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>} iconBg={darkModeU?"#450A0A":"#FEF2F2"} title={bahasaU==="en"?"Delete Account":"Hapus Akun"} sub={bahasaU==="en"?"Permanently delete account and data":"Hapus akun dan semua data permanen"} onPress={()=>{
-                    if(window.confirm(bahasaU==="en"?"Are you sure? This action cannot be undone.":"Yakin? Tindakan ini tidak bisa dibatalkan.")) {
-                      showAlert({type:"confirm",title:bahasaU==="en"?"Final Confirmation":"Konfirmasi Terakhir",message:bahasaU==="en"?"All reports and data will be permanently deleted.":"Semua laporan dan data akan dihapus permanen.",confirmLabel:bahasaU==="en"?"Yes, Delete":"Ya, Hapus",onConfirm:async()=>{
-                        showAlert({type:"info",title:bahasaU==="en"?"Action Unavailable":"Fitur Tidak Tersedia",message:bahasaU==="en"?"Account deletion is disabled in demo mode. This environment uses a shared demo account that cannot be permanently deleted.":"Penghapusan akun dinonaktifkan pada mode demo. Lingkungan ini menggunakan akun demo bersama yang tidak dapat dihapus secara permanen.",confirmLabel:"OK"});return;
-                      }});
-                    }
+                    showAlert({type:"info",title:bahasaU==="en"?"Action Unavailable":"Fitur Tidak Tersedia",message:bahasaU==="en"?"Account deletion is disabled in demo mode. This is a shared demo account.":"Penghapusan akun dinonaktifkan pada mode demo. Ini adalah akun demo bersama yang tidak dapat dihapus.",confirmLabel:"OK"});
                   }} last theme={DK}/>
                 </SCard>
 
