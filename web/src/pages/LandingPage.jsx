@@ -367,7 +367,7 @@ export default function LandingPage() {
                  style={{border: imgBorder, borderRadius:'16px', outline:'none'}}
 
                 />
-                <div className="af-float"></div>
+                
               </div>
             </div>
             <div className="about-txt">
