@@ -18,6 +18,13 @@ export default function LoginPage() {
     submit(form);
   };
 
+  const InfoRow = ({ icon, text }) => (
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '8px' }}>
+      <span style={{ flexShrink: 0, marginTop: '1px', color: '#64748B' }}>{icon}</span>
+      <p style={{ color: '#334155', margin: '0', textAlign: 'justify', lineHeight: '1.5' }}>{text}</p>
+    </div>
+  );
+
   return (
     <div className="auth-page">
       <button onClick={() => navigate('/')} className="auth-back" aria-label="Kembali" style={{ flexShrink: 0 }}>
@@ -52,22 +59,37 @@ export default function LoginPage() {
                   <div>
                     <p style={{ fontWeight: 700, color: '#0F172A', margin: '0 0 10px', fontSize: '13px' }}>Akun Demo</p>
                     <p style={{ color: '#0F172A', margin: '0 0 4px', fontWeight: 600 }}>1. Admin</p>
-                    <p style={{ color: '#334155', margin: '0 0 2px', paddingLeft: '12px', textAlign: 'justify' }}>USN: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>admin_demo</code></p>
-                    <p style={{ color: '#334155', margin: '0 0 12px', paddingLeft: '12px', textAlign: 'justify' }}>PWD: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>demo12345</code></p>
+                    <p style={{ color: '#334155', margin: '0 0 2px', paddingLeft: '12px' }}>USN: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>admin_demo</code></p>
+                    <p style={{ color: '#334155', margin: '0 0 12px', paddingLeft: '12px' }}>PWD: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>demo12345</code></p>
                     <p style={{ color: '#0F172A', margin: '0 0 4px', fontWeight: 600 }}>2. Masyarakat</p>
-                    <p style={{ color: '#334155', margin: '0 0 2px', paddingLeft: '12px', textAlign: 'justify' }}>USN: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>warga_demo</code></p>
-                    <p style={{ color: '#334155', margin: '0', paddingLeft: '12px', textAlign: 'justify' }}>PWD: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>demo12345</code></p>
+                    <p style={{ color: '#334155', margin: '0 0 2px', paddingLeft: '12px' }}>USN: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>warga_demo</code></p>
+                    <p style={{ color: '#334155', margin: '0', paddingLeft: '12px' }}>PWD: <code style={{ background: '#F1F5F9', padding: '1px 6px', borderRadius: '4px', fontSize: '12px', color: '#0F172A' }}>demo12345</code></p>
                   </div>
 
                   <div style={{ background: '#E2E8F0', width: '1px' }}></div>
 
                   <div>
                     <p style={{ fontWeight: 700, color: '#0F172A', margin: '0 0 10px', fontSize: '13px' }}>Informasi</p>
-                    <p style={{ color: '#334155', margin: '0 0 8px', textAlign: 'justify' }}>1. Respons pertama ~5-10 detik, normal pada environment serverless.</p>
-                    <p style={{ color: '#334155', margin: '0 0 8px', textAlign: 'justify' }}>2. Tampilan optimal di laptop/PC (min. 1024px).</p>
-                    <p style={{ color: '#334155', margin: '0 0 8px', textAlign: 'justify' }}>3. Upload foto dinonaktifkan - tidak ada persistent storage pada environment demo.</p>
-                    <p style={{ color: '#334155', margin: '0 0 8px', textAlign: 'justify' }}>4. Registrasi dinonaktifkan - gunakan akun demo di kiri.</p>
-                    <p style={{ color: '#334155', margin: '0', textAlign: 'justify' }}>5. Lupa kata sandi dinonaktifkan - akun demo tidak memerlukan reset password.</p>
+                    <InfoRow
+                      icon={<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
+                      text="Respons pertama ~5-10 detik, normal pada environment serverless."
+                    />
+                    <InfoRow
+                      icon={<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>}
+                      text="Tampilan optimal di laptop/PC (min. 1024px)."
+                    />
+                    <InfoRow
+                      icon={<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><line x1="21" y1="3" x2="3" y2="21"/></svg>}
+                      text="Upload foto dinonaktifkan - tidak ada persistent storage pada environment demo."
+                    />
+                    <InfoRow
+                      icon={<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="17" y1="11" x2="23" y2="11"/></svg>}
+                      text="Registrasi dinonaktifkan - gunakan akun demo di kiri."
+                    />
+                    <InfoRow
+                      icon={<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>}
+                      text="Lupa kata sandi dinonaktifkan - akun demo tidak memerlukan reset password."
+                    />
                   </div>
                 </div>
               </div>
