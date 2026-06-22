@@ -9,6 +9,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ login: '', password: '' });
   const [showPass, setShowPass] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
 
   const { loading, error, submit } = useLogin();
 
@@ -26,29 +27,45 @@ export default function LoginPage() {
       </button>
 
       {import.meta.env.VITE_DEMO_MODE === 'true' && (
-  <div style={{ background:'#F8FAFC', border:'1px solid #E2E8F0', borderRadius:'12px', padding:'16px', marginBottom:'16px', fontSize:'13px' }}>
-    <p style={{ fontWeight:700, color:'#0F172A', marginBottom:'12px', fontSize:'11px', letterSpacing:'0.08em', textTransform:'uppercase', margin:'0 0 12px' }}>Demo Environment</p>
-    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'12px 20px' }}>
-      <div>
-        <p style={{ fontWeight:600, color:'#1E293B', margin:'0 0 8px' }}>Akun Demo</p>
-        <p style={{ color:'#334155', margin:'0 0 2px' }}>1. Admin</p>
-        <p style={{ color:'#64748B', margin:'0 0 2px', paddingLeft:'12px' }}>USN: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>admin_demo</code></p>
-        <p style={{ color:'#64748B', margin:'0 0 10px', paddingLeft:'12px' }}>PWD: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>demo12345</code></p>
-        <p style={{ color:'#334155', margin:'0 0 2px' }}>2. Masyarakat</p>
-        <p style={{ color:'#64748B', margin:'0 0 2px', paddingLeft:'12px' }}>USN: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>warga_demo</code></p>
-        <p style={{ color:'#64748B', margin:'0', paddingLeft:'12px' }}>PWD: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>demo12345</code></p>
-      </div>
-      <div>
-        <p style={{ fontWeight:600, color:'#1E293B', margin:'0 0 8px' }}>Informasi</p>
-        <p style={{ color:'#64748B', margin:'0 0 6px' }}>1. Respons pertama ~5–10 detik, normal pada environment serverless.</p>
-        <p style={{ color:'#64748B', margin:'0 0 6px' }}>2. Tampilan optimal di laptop/PC (min. 1024px).</p>
-        <p style={{ color:'#64748B', margin:'0 0 6px' }}>3. Upload foto dinonaktifkan — tidak ada persistent storage pada environment demo.</p>
-        <p style={{ color:'#64748B', margin:'0 0 6px' }}>4. Registrasi dinonaktifkan — gunakan akun demo di kiri.</p>
-        <p style={{ color:'#64748B', margin:'0' }}>5. Lupa kata sandi dinonaktifkan — akun demo tidak memerlukan reset password.</p>
-      </div>
-    </div>
-  </div>
-)}
+        <div style={{ width:'100%', maxWidth:'860px', margin:'0 auto 12px', textAlign:'center' }}>
+          <button
+            type="button"
+            onClick={() => setShowDemo(v => !v)}
+            style={{ background:'none', border:'none', cursor:'pointer', color:'#64748B', fontSize:'13px', display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 0' }}
+          >
+            Lihat panduan demo {showDemo ? '▲' : '▼'}
+          </button>
+          {showDemo && (
+            <div style={{ marginTop:'8px', background:'#F8FAFC', border:'1px solid #E2E8F0', borderRadius:'12px', padding:'16px 20px', fontSize:'13px', textAlign:'left', position:'relative' }}>
+              <button
+                type="button"
+                onClick={() => setShowDemo(false)}
+                style={{ position:'absolute', top:'10px', right:'14px', background:'none', border:'none', cursor:'pointer', color:'#94A3B8', fontSize:'16px', lineHeight:1 }}
+              >×</button>
+              <p style={{ fontWeight:700, color:'#0F172A', fontSize:'11px', letterSpacing:'0.08em', textTransform:'uppercase', margin:'0 0 12px' }}>Demo Environment</p>
+              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'12px 32px' }}>
+                <div>
+                  <p style={{ fontWeight:600, color:'#1E293B', margin:'0 0 8px' }}>Akun Demo</p>
+                  <p style={{ color:'#334155', margin:'0 0 2px' }}>1. Admin</p>
+                  <p style={{ color:'#64748B', margin:'0 0 2px', paddingLeft:'12px' }}>USN: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>admin_demo</code></p>
+                  <p style={{ color:'#64748B', margin:'0 0 10px', paddingLeft:'12px' }}>PWD: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>demo12345</code></p>
+                  <p style={{ color:'#334155', margin:'0 0 2px' }}>2. Masyarakat</p>
+                  <p style={{ color:'#64748B', margin:'0 0 2px', paddingLeft:'12px' }}>USN: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>warga_demo</code></p>
+                  <p style={{ color:'#64748B', margin:'0', paddingLeft:'12px' }}>PWD: <code style={{ background:'#E2E8F0', padding:'1px 5px', borderRadius:'4px' }}>demo12345</code></p>
+                </div>
+                <div>
+                  <p style={{ fontWeight:600, color:'#1E293B', margin:'0 0 8px' }}>Informasi</p>
+                  <p style={{ color:'#64748B', margin:'0 0 6px' }}>1. Respons pertama ~5-10 detik, normal pada environment serverless.</p>
+                  <p style={{ color:'#64748B', margin:'0 0 6px' }}>2. Tampilan optimal di laptop/PC (min. 1024px).</p>
+                  <p style={{ color:'#64748B', margin:'0 0 6px' }}>3. Upload foto dinonaktifkan - tidak ada persistent storage pada environment demo.</p>
+                  <p style={{ color:'#64748B', margin:'0 0 6px' }}>4. Registrasi dinonaktifkan - gunakan akun demo di kiri.</p>
+                  <p style={{ color:'#64748B', margin:'0' }}>5. Lupa kata sandi dinonaktifkan - akun demo tidak memerlukan reset password.</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="auth-card">
         {/* LEFT */}
