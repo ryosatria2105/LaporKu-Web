@@ -19,7 +19,8 @@ function MobileGuard({ children }) {
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
   }, []);
-  if (isMobile) return (
+  const [bypass, setBypass] = React.useState(false);
+  if (isMobile && !bypass) return (
     <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'32px 24px', background:'#F8FAFC', textAlign:'center' }}>
       <svg width="52" height="52" fill="none" viewBox="0 0 24 24" stroke="#3B82F6" strokeWidth={1.5} style={{ marginBottom:'20px' }}>
         <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
@@ -27,7 +28,10 @@ function MobileGuard({ children }) {
       <h2 style={{ fontSize:'20px', fontWeight:700, color:'#0F172A', margin:'0 0 10px' }}>Tampilan Tidak Optimal</h2>
       <p style={{ fontSize:'14px', color:'#64748B', margin:'0 0 8px', lineHeight:1.6, maxWidth:'300px' }}>Dashboard LaporKu dirancang untuk layar laptop atau PC (min. 1024px).</p>
       <p style={{ fontSize:'14px', color:'#64748B', margin:'0 0 24px', lineHeight:1.6, maxWidth:'300px' }}>Silakan buka di perangkat yang lebih besar untuk pengalaman terbaik.</p>
-      <button onClick={() => window.location.href = '/login'} style={{ background:'#3B82F6', color:'#fff', border:'none', borderRadius:'8px', padding:'10px 28px', fontSize:'14px', fontWeight:600, cursor:'pointer' }}>Kembali ke Login</button>
+      <div style={{ display:'flex', flexDirection:'column', gap:'10px', width:'100%', maxWidth:'280px' }}>
+        <button onClick={() => window.location.href = '/login'} style={{ background:'#3B82F6', color:'#fff', border:'none', borderRadius:'8px', padding:'10px 28px', fontSize:'14px', fontWeight:600, cursor:'pointer' }}>Kembali ke Login</button>
+        <button onClick={() => setBypass(true)} style={{ background:'none', color:'#64748B', border:'1px solid #E2E8F0', borderRadius:'8px', padding:'10px 28px', fontSize:'13px', cursor:'pointer' }}>Lanjutkan di perangkat ini</button>
+      </div>
     </div>
   );
   return children;
