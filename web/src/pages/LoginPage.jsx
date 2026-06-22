@@ -121,7 +121,7 @@ export default function LoginPage() {
               </div>
 
               <div style={{ textAlign: 'right', marginTop: '-6px' }}>
-                <Link to="/forgot-password" className="auth-forgot">Lupa kata sandi?</Link>
+                {import.meta.env.VITE_DEMO_MODE === 'true' ? <span className="auth-forgot" style={{ color: '#9CA3AF', cursor: 'default' }}>Lupa kata sandi? (nonaktif)</span> : <Link to="/forgot-password" className="auth-forgot">Lupa kata sandi?</Link>}
               </div>
 
               <button type="submit" disabled={loading} className="auth-btn auth-btn-green" style={{ marginTop: '4px' }}>
